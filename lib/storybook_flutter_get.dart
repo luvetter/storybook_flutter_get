@@ -2,7 +2,6 @@ library storybook_flutter_get;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:storybook_device_preview/storybook_device_preview.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:storybook_flutter_get/src/story_page_wrapper.dart';
 
@@ -52,16 +51,7 @@ class GetStorybook extends StatelessWidget {
 
   /// Optional parameter to override story wrapper.
   ///
-  /// {@template storybook_flutter.default_story_wrapper}
-  /// By default each story is wrapped into:
-  /// ```dart
-  /// Container(
-  ///   color: story.background,
-  ///   padding: story.padding,
-  ///   child: Center(child: child),
-  /// )
-  /// ```
-  /// {@endtemplate}
+  /// {@macro storybook_flutter.default_story_wrapper}
   ///
   /// You can also override individual story wrapper by using
   /// [Story.wrapperBuilder].
@@ -82,8 +72,8 @@ class GetStorybook extends StatelessWidget {
         localizationsDelegates: localizationDelegates,
         initialRoute: initialRoute,
         getPages: children
-            .map((e) => GetPage(
-                  name: '/${e.path}',
+            .map((story) => GetPage(
+                  name: '/${story.path}',
                   page: () => StoryPageWrapper(),
                   transitionDuration: Duration.zero,
                 ))
